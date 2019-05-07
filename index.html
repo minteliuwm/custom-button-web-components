@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="/node_modules/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js"></script>
+  <script src="/node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
+  <title>lit-element code sample</title>
+  
+</head>
+  <body>
+
+    <h3>my-button-create</h3>
+    <my-button-create type="default">DEFAULT</my-button-create>
+    <my-button-create type="primary">PRIMARY</my-button-create>
+
+
+    <h3>my-button-template</h3>
+    <my-button-template type="default">DEFAULT</my-button-template>
+    <my-button-template type="primary">PRIMARY</my-button-template>
+
+    <h3>my-button-lit</h3>
+    <my-button-lit type="default">DEFAULT</my-button-lit>
+    <my-button-lit id="test" type="primary" onclick="s(event)">PRIMARY</my-button-lit>
+
+    <script>
+      let testEl = document.querySelector('#test');
+      testEl.addEventListener('attr-changed', (e) => {
+        console.log(e);
+      });
+      function s (e) {
+        console.log(e);
+      }
+    </script>
+
+    <template id="my-button-template">
+      <style>
+        :host[hidden] {
+          display: none;
+        }
+        :host {
+          display: inline-block;
+        }
+        .m-btn {
+          box-sizing: border-box;
+          height: 32px;
+          line-height: 32px;
+          border-radius: 3px;
+          min-width: 80px;
+          padding: 0 22px;
+          vertical-align: middle;
+          font-size: 14px;
+          cursor: pointer;
+          outline: none;
+        }
+        .m-btn-default {
+          background-color: #fff;
+          border: 1px solid #d9dde3;
+          color: #666;
+        }
+        .m-btn-default:hover {
+          border-color: #3274e6;
+          color: #3274e6;
+        }
+        .m-btn-primary {
+          color: #fff;
+          border: 1px solid #3274e6;
+          background-color: #3274e6;
+        }
+        .m-btn-primary:hover {
+          background-color: #2888fb;
+          border: 1px solid #2888fb;
+        }
+      </style>
+      <button class="m-btn">
+        <slot></slot>
+      </button>
+    </template>
+  </body>
+</html>
